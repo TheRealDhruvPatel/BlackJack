@@ -1,0 +1,82 @@
+#fully operating BlackJack function coded in Python3
+from random import randint
+from termcolor import colored
+import random
+def blackjack():
+  numbers = ["Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"]
+  suits = ["Spades","Clubs","Hearts","Diamonds"]
+  tobeplayed = []
+  played = []
+  a1 = randint(1,10)
+  b1 = randint(1,10)
+  c1 = randint(1,10)
+  new = []
+  for l in range(1,3):
+    x = random.choice(numbers)
+    y = random.choice(suits)
+    final = x + " of " + y
+    if x == "Jack":
+      total = 10
+      played.append(final)
+      new.append(total)
+    elif x == "Queen":
+      total = 10
+      played.append(final)
+      new.append(total)
+    elif x == "King":
+      total = 10
+      played.append(final)
+      new.append(total)
+    elif x == "Ace":
+      total = 11
+      played.append(final)
+      new.append(total)
+    else:
+      total = int(x)
+      played.append(final)
+      new.append(total)
+  combined = new[0] + new[1]
+  print(played)
+  print(combined)
+#Make sure to use while loop to ask again!
+  if combined == 21:
+    print("Congratulations you have won BlackJack!")
+  elif combined > 21:
+    print("Your total is",combined,"and because it is over 21,you have busted!")
+  else:
+    ask = input("Would you like to hit or stay?")
+    if ask == "hit":
+      hscore = combined + a1
+      if hscore == 21:
+        print(hscore)
+        print("Congratulations your score is 21,you have won BlackJack!")
+      elif hscore > 21:
+        print("Your total is",hscore,"and because it is over 21,you have busted! Better luck next time!")
+      elif hscore < 21:
+        print("Your total is now",hscore,"!")
+        newask = input("Would you like to hit or stay?")
+        if newask == "hit":
+          nscore = hscore + b1
+          if nscore == 21:
+            print(nscore)
+            print("Congratulations your score is 21,you have won Blackjack!")
+          elif nscore > 21:
+            print("Your total is",nscore,"and because it is over 21,you have busted! Better luck next time!")
+          elif nscore < 21:
+            print("Your total is now",nscore,"!")
+            finalask = input("Would you like to hit or stay?")
+            if finalask == "hit":
+              zscore = nscore + c1
+              if zscore == 21:
+                print("Congratulations your score is 21,you have won Blackjack!")
+              elif zscore > 21:
+                print("Your total is",zscore,"and because it is over 21,you have busted! Better luck next time!")
+              else:
+                print("Your final score is",zscore,"! Thanks for playing!")
+            elif finalask == "stay":
+              print("You selected to stay. Your total is",nscore,".",)
+        elif newask == "stay":
+          print("You selected to stay. Your total is",hscore,".")
+    elif ask == "stay":
+      print("You have selected to stay. Your total is",combined,".")
+  return
